@@ -1,0 +1,106 @@
+﻿<Window x:Class="ACParticle.Particle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:scenes="clr-namespace:ACParticle"
+        mc:Ignorable="d"
+        Title="AC Particle Viewer" Width="1154" Height="720">
+    <Grid x:Name="LayoutRoot">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height="76" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360" />
+            <ColumnDefinition Width=".1*" />
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Click="OpenFile_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/OpenFile_16x.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" />
+            </MenuItem>
+        </Menu>
+
+        <TabControl Grid.Row="1">
+            
+            <TabItem Header="Setup">
+                <Grid Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height=".1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Setup Tables" Grid.Row="0"/>
+                    <ListBox Name="Setups" Margin="10,0,7.5,0" Grid.Row="1" PreviewMouseDown="Setups_OnClick"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Script table">
+                <Grid Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height=".1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="220" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Physics Effect Tables" Grid.Row="0"/>
+                    <ListBox Name="PETables" Margin="10,0,7.5,0" SelectionChanged="PETables_SelectionChanged" Grid.Row="1"/>
+
+                    <Label Name="ScriptsLabel" Content="Physics Scripts" Grid.Row="0" Grid.Column="1"/>
+                    <ListBox Name="PETableScripts" Margin="7.5,0,10,0" Grid.Row="1" Grid.Column="1" PreviewMouseDown="PETableScripts_OnClick" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Script">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height=".1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Scripts" Grid.Row="0"/>
+                    <ListBox Name="Scripts" Margin="10,0,7.5,0" Grid.Row="1" PreviewMouseDown="Scripts_OnClick"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Emitters">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height=".1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Emitters" Grid.Row="0"/>
+                    <ListBox Name="Emitters" Margin="10,0,7.5,0" Grid.Row="1" PreviewMouseDown="Emitters_OnClick"/>
+                </Grid>                
+            </TabItem>
+        </TabControl>
+
+        <scenes:ParticleViewer Grid.Row="1" Grid.Column="1" Margin="0,22,10,0" />
+
+        <TextBox Name="Status" TextWrapping="Wrap" Margin="10" Padding="3" Grid.Row="2" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+    </Grid>
+    
+</Window>

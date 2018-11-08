@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8DEF2CE-1AE2-492E-A17C-5D002BEC44D8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ACParticle</RootNamespace>
+    <AssemblyName>ACParticle</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Extensions\FrameExtensions.cs" />
+    <Compile Include="Extensions\MatrixExtensions.cs" />
+    <Compile Include="Extensions\QuaternionExtensions.cs" />
+    <Compile Include="Extensions\SWVertexExtensions.cs" />
+    <Compile Include="Extensions\Vector3Extensions.cs" />
+    <Compile Include="Extensions\VertexArrayExtensions.cs" />
+    <Compile Include="Model\GfxObj.cs" />
+    <Compile Include="Model\GfxObjCache.cs" />
+    <Compile Include="Model\GfxObjInstance.cs" />
+    <Compile Include="Model\Polygon.cs" />
+    <Compile Include="Model\Setup.cs" />
+    <Compile Include="Model\SetupCache.cs" />
+    <Compile Include="Model\SetupInstance.cs" />
+    <Compile Include="Physics\WorldObject.cs" />
+    <Compile Include="Render\Billboard.cs" />
+    <Compile Include="Render\Camera.cs" />
+    <Compile Include="Render\PixelFormatDesc.cs" />
+    <Compile Include="Render\Render.cs" />
+    <Compile Include="Render\R_GfxObj.cs" />
+    <Compile Include="Render\R_PartArray.cs" />
+    <Compile Include="Render\R_PhysicsObj.cs" />
+    <Compile Include="Render\R_PhysicsPart.cs" />
+    <Compile Include="Render\TextureCache.cs" />
+    <Page Include="Particle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\TextBoxExtensions.cs" />
+    <Compile Include="Particle.xaml.cs">
+      <DependentUpon>Particle.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ParticleViewer.cs" />
+    <Compile Include="Physics\Animation\ActionNode.cs" />
+    <Compile Include="Physics\Animation\AFrame.cs" />
+    <Compile Include="Physics\Animation\Animation.cs" />
+    <Compile Include="Physics\Animation\AnimData.cs" />
+    <Compile Include="Physics\Animation\AnimNode.cs" />
+    <Compile Include="Physics\Animation\AnimSequenceNode.cs" />
+    <Compile Include="Physics\Animation\InterpolationNode.cs" />
+    <Compile Include="Physics\Animation\InterpretedMotionState.cs" />
+    <Compile Include="Physics\Animation\Motion.cs" />
+    <Compile Include="Physics\Animation\MotionInterp.cs" />
+    <Compile Include="Physics\Animation\MotionNode.cs" />
+    <Compile Include="Physics\Animation\MotionState.cs" />
+    <Compile Include="Physics\Animation\MotionTable.cs" />
+    <Compile Include="Physics\Animation\MovementNode.cs" />
+    <Compile Include="Physics\Animation\MovementParameters.cs" />
+    <Compile Include="Physics\Animation\MovementParamFlags.cs" />
+    <Compile Include="Physics\Animation\MovementStruct.cs" />
+    <Compile Include="Physics\Animation\MovementSystem.cs" />
+    <Compile Include="Physics\Animation\RawMotionState.cs" />
+    <Compile Include="Physics\Animation\Sequence.cs" />
+    <Compile Include="Physics\BSP\BSPLeaf.cs" />
+    <Compile Include="Physics\BSP\BSPNode.cs" />
+    <Compile Include="Physics\BSP\BSPPortal.cs" />
+    <Compile Include="Physics\BSP\BSPTree.cs" />
+    <Compile Include="Physics\BSP\PortalPoly.cs" />
+    <Compile Include="Physics\Collision\BBox.cs" />
+    <Compile Include="Physics\Collision\CollisionInfo.cs" />
+    <Compile Include="Physics\Collision\CollisionRecord.cs" />
+    <Compile Include="Physics\Collision\EnvCollisionProfile.cs" />
+    <Compile Include="Physics\Collision\ObjCollisionProfile.cs" />
+    <Compile Include="Physics\Combat\AtkCollisionProfile.cs" />
+    <Compile Include="Physics\Combat\AtkObjInfo.cs" />
+    <Compile Include="Physics\Combat\AttackCone.cs" />
+    <Compile Include="Physics\Combat\AttackInfo.cs" />
+    <Compile Include="Physics\Combat\DetectionCylsphere.cs" />
+    <Compile Include="Physics\Combat\DetectionInfo.cs" />
+    <Compile Include="Physics\Combat\TargetInfo.cs" />
+    <Compile Include="Physics\Combat\TargettedVoyeurInfo.cs" />
+    <Compile Include="Physics\Common\AddUpdateObjs.cs" />
+    <Compile Include="Physics\Common\BldPortal.cs" />
+    <Compile Include="Physics\Common\BuildingObj.cs" />
+    <Compile Include="Physics\Common\CellArray.cs" />
+    <Compile Include="Physics\Common\CellStruct.cs" />
+    <Compile Include="Physics\Common\ChatRoomTracker.cs" />
+    <Compile Include="Physics\Common\ChildList.cs" />
+    <Compile Include="Physics\Common\DBObj.cs" />
+    <Compile Include="Physics\Common\EncumbranceSystem.cs" />
+    <Compile Include="Physics\Common\EnvCell.cs" />
+    <Compile Include="Physics\Common\GfxObj.cs" />
+    <Compile Include="Physics\Common\HookAppraisalProfile.cs" />
+    <Compile Include="Physics\Common\Landblock.cs" />
+    <Compile Include="Physics\Common\LandblockStruct.cs" />
+    <Compile Include="Physics\Common\LandCell.cs" />
+    <Compile Include="Physics\Common\LandDefs.cs" />
+    <Compile Include="Physics\Common\LostCell.cs" />
+    <Compile Include="Physics\Common\LScape.cs" />
+    <Compile Include="Physics\Common\MasterDBMap.cs" />
+    <Compile Include="Physics\Common\ObjCache.cs" />
+    <Compile Include="Physics\Common\ObjCell.cs" />
+    <Compile Include="Physics\Common\ObjectDesc.cs" />
+    <Compile Include="Physics\Common\ObjectMaint.cs" />
+    <Compile Include="Physics\Common\PartCell.cs" />
+    <Compile Include="Physics\Common\PhysicsTimer.cs" />
+    <Compile Include="Physics\Common\Position.cs" />
+    <Compile Include="Physics\Common\QualifiedDataID.cs" />
+    <Compile Include="Physics\Common\Random.cs" />
+    <Compile Include="Physics\Common\Render.cs" />
+    <Compile Include="Physics\Common\SetPosition.cs" />
+    <Compile Include="Physics\Common\ShadowObj.cs" />
+    <Compile Include="Physics\Common\ShadowPart.cs" />
+    <Compile Include="Physics\Common\SmartBox.cs" />
+    <Compile Include="Physics\Common\SortCell.cs" />
+    <Compile Include="Physics\Common\Vector.cs" />
+    <Compile Include="Physics\Common\Vertex.cs" />
+    <Compile Include="Physics\Common\VertexArray.cs" />
+    <Compile Include="Physics\Common\WeenieDesc.cs" />
+    <Compile Include="Physics\Common\WeenieObject.cs" />
+    <Compile Include="Physics\CylSphere.cs" />
+    <Compile Include="Physics\Entity\BSPCache.cs" />
+    <Compile Include="Physics\Entity\GfxObjCache.cs" />
+    <Compile Include="Physics\Entity\PolygonCache.cs" />
+    <Compile Include="Physics\Entity\VertexCache.cs" />
+    <Compile Include="Physics\Extensions\FloatExtensions.cs" />
+    <Compile Include="Physics\Extensions\ListExtensions.cs" />
+    <Compile Include="Physics\Extensions\PlaneExtensions.cs" />
+    <Compile Include="Physics\Extensions\QuaternionExtensions.cs" />
+    <Compile Include="Physics\Extensions\QueueExtensions.cs" />
+    <Compile Include="Physics\Extensions\Vector3Extensions.cs" />
+    <Compile Include="Physics\Hooks\AnimDoneHook.cs" />
+    <Compile Include="Physics\Hooks\AnimHook.cs" />
+    <Compile Include="Physics\Hooks\FPHook.cs" />
+    <Compile Include="Physics\Hooks\PhysicsHookType.cs" />
+    <Compile Include="Physics\Hooks\PhysicsObjHook.cs" />
+    <Compile Include="Physics\Hooks\VectorHook.cs" />
+    <Compile Include="Physics\Managers\AttackManager.cs" />
+    <Compile Include="Physics\Managers\ConstraintManager.cs" />
+    <Compile Include="Physics\Managers\DetectionManager.cs" />
+    <Compile Include="Physics\Managers\InterpolationManager.cs" />
+    <Compile Include="Physics\Managers\MotionTableManager.cs" />
+    <Compile Include="Physics\Managers\MovementManager.cs" />
+    <Compile Include="Physics\Managers\MoveToManager.cs" />
+    <Compile Include="Physics\Managers\PositionManager.cs" />
+    <Compile Include="Physics\Managers\StickyManager.cs" />
+    <Compile Include="Physics\Managers\TargetManager.cs" />
+    <Compile Include="Physics\ObjectInfo.cs" />
+    <Compile Include="Physics\PartArray.cs" />
+    <Compile Include="Physics\Particles\Particle.cs" />
+    <Compile Include="Physics\Particles\ParticleEmitter.cs" />
+    <Compile Include="Physics\Particles\ParticleEmitterInfo.cs" />
+    <Compile Include="Physics\Particles\ParticleManager.cs" />
+    <Compile Include="Physics\PhysicsDesc.cs" />
+    <Compile Include="Physics\PhysicsEngine.cs" />
+    <Compile Include="Physics\PhysicsGlobals.cs" />
+    <Compile Include="Physics\PhysicsObj.cs" />
+    <Compile Include="Physics\PhysicsPart.cs" />
+    <Compile Include="Physics\PhysObjProfile.cs" />
+    <Compile Include="Physics\Polygon.cs" />
+    <Compile Include="Physics\Ray.cs" />
+    <Compile Include="Physics\Scripts\PhysicsScript.cs" />
+    <Compile Include="Physics\Scripts\PhysicsScriptData.cs" />
+    <Compile Include="Physics\Scripts\PhysicsScriptTable.cs" />
+    <Compile Include="Physics\Scripts\PhysicsScriptTableData.cs" />
+    <Compile Include="Physics\Scripts\ScriptAndModData.cs" />
+    <Compile Include="Physics\Scripts\ScriptData.cs" />
+    <Compile Include="Physics\Scripts\ScriptManager.cs" />
+    <Compile Include="Physics\Setup.cs" />
+    <Compile Include="Physics\Sound\SoundData.cs" />
+    <Compile Include="Physics\Sound\SoundTable.cs" />
+    <Compile Include="Physics\Sound\SoundTableData.cs" />
+    <Compile Include="Physics\Sphere.cs" />
+    <Compile Include="Physics\SpherePath.cs" />
+    <Compile Include="Physics\Trajectory.cs" />
+    <Compile Include="Physics\Transition.cs" />
+    <Compile Include="Physics\Util\AdjustCell.cs" />
+    <Compile Include="Physics\Util\AdjustPos.cs" />
+    <Compile Include="Physics\Util\AdjustPosProfile.cs" />
+    <Compile Include="Physics\Util\Environment.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Content\build.bat" />
+    <EmbeddedResource Include="Content\texture.mgfxo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\OpenFile_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ACE\Source\ACE.Common\ACE.Common.csproj">
+      <Project>{3cb08beb-c589-4db9-bbc3-0d4e39a2f6d9}</Project>
+      <Name>ACE.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ACE\Source\ACE.DatLoader\ACE.DatLoader.csproj">
+      <Project>{09a2a76a-b2fa-4d5a-90a9-2b79db29bc7c}</Project>
+      <Name>ACE.DatLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ACE\Source\ACE.Entity\ACE.Entity.csproj">
+      <Project>{d98ee428-ce90-4d70-8b10-d8b913d4aa51}</Project>
+      <Name>ACE.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.WpfInterop">
+      <Version>1.7.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\texture.fx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
