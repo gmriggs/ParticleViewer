@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
-using ACE.Common;
 using ACE.DatLoader;
 using ACE.DatLoader.Entity.AnimationHooks;
 using ACE.DatLoader.FileTypes;
@@ -49,7 +48,6 @@ namespace ACParticle
             var fi = new FileInfo(filename);
             var di = fi.Directory;
 
-            ConfigManager.Initialize(@"c:\ace\config.json");
             DatManager.Initialize(di.FullName);
 
             ReadSetups();
