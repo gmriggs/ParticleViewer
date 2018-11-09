@@ -52,6 +52,11 @@ namespace ACParticle
             //SetMouse();
         }
 
+        public void OnResize()
+        {
+            CreateProjection();
+        }
+
         public Matrix CreateLookAt()
         {
             return ViewMatrix = Matrix.CreateLookAt(Position, Position + Dir, Up);

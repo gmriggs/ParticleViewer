@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:scenes="clr-namespace:ACParticle"
         mc:Ignorable="d"
+        SizeChanged="Window_SizeChanged"
         Title="AC Particle Viewer" Width="1154" Height="720">
     <Grid x:Name="LayoutRoot">
         

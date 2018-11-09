@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -28,7 +30,7 @@ namespace ACParticle
             Instance = this;
         }
 
-        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        private async void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
@@ -37,27 +39,26 @@ namespace ACParticle
                 var files = openFileDialog.FileNames;
                 if (files.Length < 1) return;
                 var file = files[0];
-                ReadDATFile(file);
+
+                Status.WriteLine("Reading " + file);
+
+                await Task.Run(() => ReadDATFile(file));
+
+                ReadSetups();
+                ReadPhysicsEffectTables();
+                ReadScripts();
+                ReadEmitterInfos();
+
+                ParticleViewer.PostInit();
             }
         }
 
         public void ReadDATFile(string filename)
         {
-            Status.WriteLine("Reading " + filename);
-
             var fi = new FileInfo(filename);
             var di = fi.Directory;
 
             DatManager.Initialize(di.FullName);
-
-            ReadSetups();
-            ReadPhysicsEffectTables();
-            ReadScripts();
-            ReadEmitterInfos();
-
-            ParticleViewer.PostInit();
-
-            Status.WriteLine("Done");
         }
 
         public void ReadSetups()
@@ -77,7 +78,7 @@ namespace ACParticle
             }
 
             Status.WriteLine($"Found {defaultScripts.Count} setups with default scripts");
-            Status.WriteLine($"Found {defaultScriptTables.Count} setups with default script tables");
+            //Status.WriteLine($"Found {defaultScriptTables.Count} setups with default script tables");
 
             PopulateTable(Setups, defaultScripts);
         }
@@ -160,6 +161,7 @@ namespace ACParticle
                     }
                 }
             }
+            Status.WriteLine($"Found {particleScripts.Count} particle scripts");
             PopulateTable(Scripts, particleScripts);
         }
 
@@ -217,6 +219,18 @@ namespace ACParticle
             ParticleViewer.InitEmitter(emitterInfoID, 1.0f);
 
             Status.WriteLine($"Playing particle effect {emitterInfoID:X8}");
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // recalculate camera
+            if (ParticleViewer != null && ParticleViewer.Camera != null)
+            {
+                new Task(() => {
+                    Thread.Sleep(1);
+                    ParticleViewer.Camera.OnResize();
+                }).Start();
+            }
         }
     }
 }
